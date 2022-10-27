@@ -13,6 +13,7 @@ import android.widget.EditText;
 
 import com.example.pantallaadicional.adapters.APIContactsAdapter;
 import com.example.pantallaadicional.entityes.ContactApi;
+import com.example.pantallaadicional.entityes.RazaPerro;
 import com.example.pantallaadicional.services.ContactApiService;
 
 import java.util.List;
@@ -25,8 +26,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FormApiContacActivity extends AppCompatActivity {
 
-    EditText etName, etLastName;
+    EditText etName, etLastName, etID,etID2, etName2, etLastName2;
     private Button button;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +36,16 @@ public class FormApiContacActivity extends AppCompatActivity {
 
         etName = findViewById(R.id.etName);
         etLastName = findViewById(R.id.etLastName);
+        etName2=findViewById(R.id.etName2);
+        etLastName2= findViewById(R.id.etLastName2);
 
-        button=findViewById(R.id.btnSiguiente);
-        button.setOnClickListener(v ->{
-                onClick(v);
-                });
+        etID = findViewById(R.id.etID);
+        etID2 = findViewById(R.id.etID2);
+
+        button = findViewById(R.id.btnSiguiente);
+        button.setOnClickListener(v -> {
+            onClick(v);
+        });
 
         /*ContactApi contactApi = new ContactApi();
         contactApi.name="Brandon";
@@ -69,15 +76,32 @@ public class FormApiContacActivity extends AppCompatActivity {
 
     }
 
-    public void enviar(View v){
+    public void enviar(View v) {
         String name = etName.getText().toString();
         String lastname = etLastName.getText().toString();
         ContactApi contactApi = new ContactApi();
-        contactApi.name=name;
-        contactApi.lastname=lastname;
+        contactApi.name = name;
+        contactApi.lastname = lastname;
         postRetrofit(contactApi);
     }
-    public  void postRetrofit(ContactApi contactApi){
+
+    public void eliminar(View v) {
+        String id = etID.getText().toString();
+        deleteRetrofit(Integer.parseInt(id));
+    }
+
+    public void actualizar(View v) {
+        String id = etID2.getText().toString();
+        String name2 = etName2.getText().toString();
+        String lastname2 = etLastName2.getText().toString();
+        ContactApi contactApi = new ContactApi();
+        contactApi.name = name2;
+        contactApi.lastname = lastname2;
+        contactApi.id = Integer.parseInt(id);
+        updateRetrofit(contactApi, Integer.parseInt(id));
+    }
+
+    public void postRetrofit(ContactApi contactApi) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://63597f5cff3d7bddb9a3cca2.mockapi.io/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -86,30 +110,51 @@ public class FormApiContacActivity extends AppCompatActivity {
         service.create(contactApi).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.i("MAIN_APP", "RESPONSE"+ response.code());
+                Log.i("MAIN_APP", "RESPONSE" + response.code());
             }
+
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
             }
         });
     }
 
-    /*public void updateRetrofit(ContactApi contactApi, int id){
+    public void deleteRetrofit(int id) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://63597f5cff3d7bddb9a3cca2.mockapi.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         ContactApiService service = retrofit.create(ContactApiService.class);
-        service.update(contactApi, id).enqueue(new Callback<Void>() {
+        service.delete(id).enqueue(new Callback<ContactApi>() {
             @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                Log.i("MAIN_APP", "RESPONSE"+ response.code());
+            public void onResponse(Call<ContactApi> call, Response<ContactApi> response) {
+                ContactApi data = response.body();
             }
 
             @Override
-            public void onFailure(Call<Void> call, Throwable t) {
+            public void onFailure(Call<ContactApi> call, Throwable t) {
 
             }
         });
-    }*/
+    }
+
+
+    public void updateRetrofit(ContactApi contactApi, int id){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://63597f5cff3d7bddb9a3cca2.mockapi.io/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        ContactApiService service = retrofit.create(ContactApiService.class);
+        service.update(contactApi, id).enqueue(new Callback<ContactApi>() {
+            @Override
+            public void onResponse(Call<ContactApi> call, Response<ContactApi> response) {
+                ContactApi data = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<ContactApi> call, Throwable t) {
+
+            }
+        });
+    }
 }

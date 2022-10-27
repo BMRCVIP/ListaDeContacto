@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
@@ -18,6 +19,10 @@ public interface ContactApiService {
     Call<List<ContactApi>> getListContact();
     @POST("contacts")
     Call<Void> create(@Body ContactApi contactApi);//guardar datos
+    /*@PUT("contacts/{id}")
+    Call<Void> update (@Body ContactApi contactApi, @Path("id")int id);*/
     @PUT("contacts/{id}")
-    Call<Void> update (@Body ContactApi contactApi, @Path("id")int id); //actualizar datos
+    Call<ContactApi> update(@Body ContactApi contactApi, @Path("id")int id);
+    @DELETE("contacts/{id}")
+    Call<ContactApi> delete (@Path("id")int id);
 }

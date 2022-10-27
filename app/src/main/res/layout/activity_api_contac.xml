@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/et"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FormApiContacActivity">
@@ -10,11 +11,12 @@
         android:id="@+id/etName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="68dp"
         android:ems="10"
         android:hint="Ingrese Nombre"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,11 +24,12 @@
         android:id="@+id/etLastName"
         android:layout_width="210dp"
         android:layout_height="49dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:hint="Ingrese Apellido"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etName" />
 
@@ -35,27 +38,100 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="159dp"
-        android:layout_marginBottom="376dp"
         android:onClick="enviar"
         android:text="CargarDatos"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etLastName" />
+
+    <EditText
+        android:id="@+id/etID"
+        android:layout_width="210dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:hint="Ingrese id"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviar" />
+
+    <Button
+        android:id="@+id/btnEliminar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:onClick="eliminar"
+        android:text="Eliminar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etID" />
+
+    <EditText
+        android:id="@+id/etID2"
+        android:layout_width="210dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="Ingrese id"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEliminar" />
+
+    <EditText
+        android:id="@+id/etName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="Ingrese Nombre"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etID2" />
+
+    <EditText
+        android:id="@+id/etLastName2"
+        android:layout_width="210dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="Ingrese Apellido"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etName2" />
 
     <Button
         android:id="@+id/btnSiguiente"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="158dp"
-        android:layout_marginTop="312dp"
         android:layout_marginEnd="159dp"
-        android:layout_marginBottom="47dp"
+        android:layout_marginBottom="16dp"
         android:text="MostrarDatos"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btnActualizar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:onClick="actualizar"
+        android:text="Actualizar"
+        app:layout_constraintBottom_toTopOf="@+id/btnSiguiente"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEnviar" />
+        app:layout_constraintTop_toBottomOf="@+id/etLastName2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
